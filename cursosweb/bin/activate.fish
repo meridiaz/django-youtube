@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/meri/Escritorio/sat/gitlab/try2git/x-serv-15.6-django-cms-put/cursosweb"
+set -gx VIRTUAL_ENV "/home/meri/Escritorio/sat/gitlab/try2git/django-youtube/cursosweb"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

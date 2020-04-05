@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/home/meri/Escritorio/sat/gitlab/try2git/x-serv-15.6-django-cms-put/cursosweb"
+setenv VIRTUAL_ENV "/home/meri/Escritorio/sat/gitlab/try2git/django-youtube/cursosweb"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

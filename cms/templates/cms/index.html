@@ -1,0 +1,18 @@
+<h1>Lista de videos seleccionados:</h1>
+<ul>
+{% for video in videos_list %}
+        {% if video.esta_seleccionado %}
+            <p> "/{{url_acor.id }}: {{url_acor.url }}"</p>
+        {% else %}
+            <p>No contents are available.</p>
+        {% endif %}
+{% endfor %}
+</ul>
+
+<h1>Lista de videos seleccionables:</h1>
+<ul>
+{% for video in videos_list %}
+        <p> Titulo : "/{{video.titulo}}</p>
+        <p> Link: "/{{video.titulo}}</p>
+{% endfor %}
+</ul>

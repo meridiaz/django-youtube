@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/meri/Escritorio/sat/gitlab/try2git/x-serv-15.6-django-cms-put/cursosweb"
+VIRTUAL_ENV="/home/meri/Escritorio/sat/gitlab/try2git/django-youtube/cursosweb"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

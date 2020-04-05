@@ -5,7 +5,6 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 import urllib
 
-guardadoenBS = False
 
 class YoutubeHandler(ContentHandler):
     def meterBS(self):
@@ -49,9 +48,9 @@ class YoutubeHandler(ContentHandler):
 class CmsConfig(AppConfig):
     name = 'cms'
     def ready(self):
-        global guardadoenBS
-        if 'runserver' in sys.argv and not guardadoenBS:
-            from .models import Video
+        from .models import Video
+        print('runserver' in sys.argv and Video.objects.all().count()==0)
+        if 'runserver' in sys.argv and Video.objects.all().count()==0:
             url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' \
                 + 'UC300utwSVAYOoRLEqmsprfg'
             #    + sys.argv[1]
@@ -61,4 +60,3 @@ class CmsConfig(AppConfig):
             Parser = make_parser()
             Parser.setContentHandler(YoutubeHandler())
             Parser.parse(xmlStream)
-            guardadoenBS = True

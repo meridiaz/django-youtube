@@ -2,9 +2,10 @@
 <ul>
 {% for video in videos_list %}
         {% if video.esta_seleccionado %}
-            <p> "/{{url_acor.id }}: {{url_acor.url }}"</p>
-        {% else %}
-            <p>No contents are available.</p>
+            <li>
+            <p> Titulo: "{{video.titulo}}</p>
+            <p> Link: <a href="{{ video.link }}">{{ video.link }}</a></p>
+            </li>
         {% endif %}
 {% endfor %}
 </ul>
@@ -12,7 +13,12 @@
 <h1>Lista de videos seleccionables:</h1>
 <ul>
 {% for video in videos_list %}
-        <p> Titulo : "/{{video.titulo}}</p>
-        <p> Link: "/{{video.titulo}}</p>
+        <li>
+        <p> Titulo: "{{video.titulo}}</p>
+        <p> Link: <a href="{{ video.link }}">{{ video.link }}</a> </p>
+        <form action="" method="POST">
+            <input type="submit" name="action" value="Seleccionar" value= {{ video.id }}>
+        </form>
+        </li>
 {% endfor %}
 </ul>

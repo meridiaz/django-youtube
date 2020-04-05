@@ -13,12 +13,14 @@
 <h1>Lista de videos seleccionables:</h1>
 <ul>
 {% for video in videos_list %}
+      {% if not video.esta_seleccionado %}
         <li>
         <p> Titulo: "{{video.titulo}}</p>
         <p> Link: <a href="{{ video.link }}">{{ video.link }}</a> </p>
         <form action="" method="POST">
-            <input type="submit" name="action" value="Seleccionar" value= {{ video.id }}>
+              <button name="action" value= Seleccionar_{{ video.id }} type = "submit">Seleccionar</button>
         </form>
         </li>
+      {% endif %}
 {% endfor %}
 </ul>

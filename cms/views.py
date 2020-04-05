@@ -4,15 +4,19 @@ from django.shortcuts import render
 
 from .models import Video
 
-
-
 @csrf_exempt
 def index(request):
     videos_list = Video.objects.all()
     context = {'videos_list': videos_list}
+
+    if request.method == "POST" :
+        video_id = request.POST['action'].split('_')[1]
+        action = request.POST['action'].split('_')[0]
+        if action == "Seleccionar":
+            v = Video.objects.get(id=video_id)
+            v.esta_seleccionado = True
+            v.save()
     return render(request, 'cms/index.html', context)
-
-
 
 # @csrf_exempt
 # def get_content(request, llave):

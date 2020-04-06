@@ -18,10 +18,10 @@
 {% for video in videos_list %}
       {% if not video.esta_seleccionado %}
         <li>
-        <p> Titulo: "{{video.titulo}}</p>
+        <p> Titulo: {{video.titulo}}</p>
         <p> Link: <a href="{{ video.link }}">{{ video.link }}</a> </p>
         <form action="" method="POST">
-              <button name="action" value= {{ video.id }} type = "submit">Seleccionar</button>
+              <button name="action" value= {{ video.ytid}} type = "submit">Seleccionar</button>
         </form>
         </li>
       {% endif %}

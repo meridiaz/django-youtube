@@ -10,7 +10,8 @@ def index(request):
     context = {'videos_list': videos_list}
     if request.method == "POST" :
         video_id = request.POST['action']
-        v = Video.objects.get(id=video_id)
+        print(video_id)
+        v = Video.objects.get(ytid=video_id)
         v.esta_seleccionado = not v.esta_seleccionado
         v.save()
     return render(request, 'cms/index.html', context)

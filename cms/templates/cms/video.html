@@ -1,0 +1,15 @@
+<h1>Video con id: {{ video.ytid }}</h1>
+<p><li>Pagina principal de la aplicacion:
+      <a href="/cms/">/cms/</a>
+</li></p>
+<p><li>Titulo del video:
+      <a href="{{ video.link }}">{{ video.titulo }}</a>
+</li></p>
+<p><li>Imagen del video:
+    <img src="video.img" width="400" height="341">
+</li></p>
+<p><li>Nombre y link del canal:
+      <a href="{{ video.canal.link }}">{{ video.canal.titulo}}</a>
+</li></p>
+<p><li>Fecha de publicacion: {{ video.fechaPub }}</li></p>
+<p><li>Descripcion del video: {{ video.descri }} </li></p>

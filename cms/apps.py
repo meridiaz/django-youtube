@@ -10,14 +10,15 @@ class YoutubeHandler(ContentHandler):
         from .models import Video, CanalYT
 
         if self.canal == "":
-            c = CanalYT(titulo = self.CanalTit, link = self.CanalLink)
+            c = CanalYT(titulo=self.CanalTit, link=self.CanalLink)
             c.save()
             self.canal = c
-        v = Video(canal = self.canal, titulo = self.title, link = self.link, ytid = self.ytid,
-                     img = self.img, fechaPub = self.fechaPub, descri = self.descrip)
+        v = Video(canal=self.canal, titulo=self.title, link=self.link,
+                  ytid=self.ytid, img=self.img, fechaPub=self.fechaPub,
+                  descri=self.descrip)
         v.save()
 
-    def __init__ (self):
+    def __init__(self):
         self.inEntry = False
         self.inContent = False
         self.content = ""
@@ -32,12 +33,12 @@ class YoutubeHandler(ContentHandler):
         self.descrip = ""
         self.canal = ""
 
-    def startElement (self, name, attrs):
+    def startElement(self, name, attrs):
         if name == 'entry':
             self.inEntry = True
         elif self.inEntry:
             if name == 'title' or name == 'yt:videoId'  \
-                or name == "media:description" or name == "published":
+              or name == "media:description" or name == "published":
                 self.inContent = True
             elif name == 'link':
                 self.link = attrs.get('href')
@@ -51,9 +52,7 @@ class YoutubeHandler(ContentHandler):
             elif name == "link" and (attrs.get('rel') == "alternate"):
                 self.CanalLink = attrs.get('href')
 
-
-
-    def endElement (self, name):
+    def endElement(self, name):
         if name == 'entry':
             self.inEntry = False
             self.meterBSVideo()
@@ -82,20 +81,20 @@ class YoutubeHandler(ContentHandler):
                 self.inContent = False
                 self.content = ""
 
-
-    def characters (self, chars):
+    def characters(self, chars):
         if self.inContent:
             self.content = self.content + chars
 
+
 class CmsConfig(AppConfig):
     name = 'cms'
+
     def ready(self):
         from .models import Video
-        if 'runserver' in sys.argv and Video.objects.all().count()==0:
+        if 'runserver' in sys.argv and Video.objects.all().count() == 0:
             url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' \
                 + 'UC300utwSVAYOoRLEqmsprfg'
             #    + sys.argv[1]
-
             print("---------------------valor de url:"+url)
             xmlStream = urlopen(url)
             Parser = make_parser()

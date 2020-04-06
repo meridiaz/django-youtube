@@ -3,13 +3,11 @@ import sys
 from urllib.request import urlopen
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
-import urllib
 
 
 class YoutubeHandler(ContentHandler):
     def meterBS(self):
         from .models import Video
-        print("meter en la base de datos")
         v = Video(titulo = self.title, link = self.link)
         v.save()
 
@@ -49,7 +47,6 @@ class CmsConfig(AppConfig):
     name = 'cms'
     def ready(self):
         from .models import Video
-        print('runserver' in sys.argv and Video.objects.all().count()==0)
         if 'runserver' in sys.argv and Video.objects.all().count()==0:
             url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' \
                 + 'UC300utwSVAYOoRLEqmsprfg'

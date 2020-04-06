@@ -8,7 +8,9 @@ from .models import Video
 def index(request):
     videos_list = Video.objects.all()
     context = {'videos_list': videos_list}
+    print("--------------------antes del post")
     if request.method == "POST" :
+        print("en el post")
         video_id = request.POST['action']
         v = Video.objects.get(ytid=video_id)
         v.esta_seleccionado = not v.esta_seleccionado

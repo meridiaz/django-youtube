@@ -3,7 +3,7 @@
 {% for video in videos_list %}
         {% if video.esta_seleccionado %}
             <li>
-            <p> Titulo: "{{video.titulo}}</p>
+            <p> Titulo: {{video.titulo}}</p>
             <p> Link: <a href=/cms/{{ video.ytid }}>/cms/{{ video.ytid }}</a> </p>
             <form action="" method="POST">
                   <button name="action" value= {{ video.ytid }} type = "submit">Eliminar</button>

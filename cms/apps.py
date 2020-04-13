@@ -4,6 +4,12 @@ from urllib.request import urlopen
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+seguir = True
+
+def deleteDB():
+    from .models import Video, CanalYT
+    if Video.objects.count() != 0:
+        CanalYT.objects.all().delete()
 
 class YoutubeHandler(ContentHandler):
     def meterBSVideo(self):
@@ -91,12 +97,14 @@ class CmsConfig(AppConfig):
 
     def ready(self):
         from .models import Video
-        if 'runserver' in sys.argv and Video.objects.all().count() == 0:
+        global seguir
+        if 'runserver' in sys.argv and seguir:
             url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' \
                 + 'UC300utwSVAYOoRLEqmsprfg'
-            #    + sys.argv[1]
             print("---------------------valor de url:"+url)
+            deleteDB()
             xmlStream = urlopen(url)
             Parser = make_parser()
             Parser.setContentHandler(YoutubeHandler())
             Parser.parse(xmlStream)
+            seguir = False

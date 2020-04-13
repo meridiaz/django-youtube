@@ -6,10 +6,12 @@ from xml.sax.handler import ContentHandler
 
 seguir = True
 
+
 def deleteDB():
     from .models import Video, CanalYT
     if Video.objects.count() != 0:
         CanalYT.objects.all().delete()
+
 
 class YoutubeHandler(ContentHandler):
     def meterBSVideo(self):
